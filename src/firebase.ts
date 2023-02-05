@@ -3,8 +3,6 @@ import { initializeApp } from "firebase/app";
 import {
   getMessaging,
   getToken as getFirebaseToken,
-  MessagePayload,
-  onMessage,
 } from "firebase/messaging";
 
 const firebaseConfig = {
@@ -40,10 +38,3 @@ export const getToken = (setToken: Dispatch<SetStateAction<string>>) => {
       // catch error while creating client token
     });
 };
-
-export const onMessageListener = () =>
-  new Promise<MessagePayload>((resolve) => {
-    onMessage(messaging, (payload) => {
-      resolve(payload);
-    });
-  });

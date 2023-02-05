@@ -1,15 +1,9 @@
 import { useState } from "react";
-import { getToken, onMessageListener } from "./firebase";
+import { getToken } from "./firebase";
 
 function App() {
   const [token, setToken] = useState("");
   getToken(setToken);
-
-  onMessageListener()
-    .then((payload) => {
-      console.log(payload);
-    })
-    .catch((err) => console.log("failed: ", err));
 
   return (
     <div>
