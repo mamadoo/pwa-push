@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { getToken, onMessageListener } from "./firebase";
 
 function App() {
+  const [token, setToken] = useState("");
+  getToken(setToken);
+
+  onMessageListener()
+    .then((payload) => {
+      console.log(payload);
+    })
+    .catch((err) => console.log("failed: ", err));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div>
+      {token ? (
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Notification permission enabled 👍🏻
+          <br />
+          <span>{token}</span>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      ) : (
+        <p>Need notification permission ❗️ </p>
+      )}
     </div>
   );
 }
