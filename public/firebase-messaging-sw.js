@@ -24,14 +24,14 @@ const app = firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging(app);
 
 messaging.onBackgroundMessage(function (payload) {
-  const notification = payload.notification;
-  if (notification && notification.title) {
+  const data = payload.data;
+  if (data && data.title) {
     // Customize notification here
     const notificationOptions = {
-      ...notification,
-      icon: "/logo192.png",
+      ...data,
+      icon: data.icon || "/logo192.png",
     };
 
-    self.registration.showNotification(notification.title, notificationOptions);
+    self.registration.showNotification(data.title, notificationOptions);
   }
 });
