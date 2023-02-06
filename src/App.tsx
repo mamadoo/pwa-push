@@ -5,6 +5,17 @@ function App() {
   const [token, setToken] = useState("");
   getToken(setToken);
 
+  const handleClick = () => {
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then(function (stream) {
+        alert(stream);
+      })
+      .catch(function (err) {
+        alert(err);
+      });
+  };
+
   return (
     <div>
       {token ? (
@@ -16,6 +27,7 @@ function App() {
       ) : (
         <p>Need notification permission ❗️ </p>
       )}
+      <button onClick={handleClick}>Click me</button>
     </div>
   );
 }
