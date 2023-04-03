@@ -9,7 +9,7 @@ function App() {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then(function (stream) {
-        alert(stream);
+        alert(JSON.stringify(stream));
       })
       .catch(function (err) {
         alert(err);
