@@ -43,6 +43,9 @@ function App() {
           //   },
           //   body: JSON.stringify(subscription),
           // });
+        })
+        .catch((err) => {
+          console.log(err);
         });
     });
   };
