@@ -78,3 +78,12 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+self.addEventListener("push", async (event) => {
+  const { title = "title", body = "body" } = await event.data?.json();
+
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body,
+    })
+  );
+});
